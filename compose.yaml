@@ -4,14 +4,16 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-      - "4001:5000"
+      - "4001:4001"
+    environment:
+      - PORT=4001
+      - CONNECTION_URL=mongodb://db:27017/volunteer-tracker
+      - API_URL=http://localhost:4001
     depends_on:
       - db
 
   db:
     image: mongo
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+
   
