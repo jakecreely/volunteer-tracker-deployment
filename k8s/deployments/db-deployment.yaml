@@ -6,14 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: db
+      name: db
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.35.0 (HEAD)
       labels:
-        io.kompose.service: db
+        name: db
     spec:
       containers:
         - image: mongo
