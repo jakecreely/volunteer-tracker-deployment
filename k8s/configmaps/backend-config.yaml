@@ -1,0 +1,11 @@
+# Rather than defining directly in kubernetes I am defining the configmaps as YAML
+#  files for version control
+
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: backend-config
+data: 
+  PORT: "4001" # Has to be a string
+  CONNECTION_URL: "mongodb://db:27017/volunteer-tracker"
+  API_URL: "http://localhost:4001"
