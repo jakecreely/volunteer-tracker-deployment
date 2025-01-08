@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: volunteer-tracker-backend
 spec:
   replicas: 1
   selector: # Uses labels to match the pods
     matchLabels:
-      app: backend 
+      app: volunteer-tracker-backend 
   template: # Blueprint for the Pods that Kubernetes will create
     metadata:
       labels:
-        app: backend # This label is added to each pod
+        app: volunteer-tracker-backend # This label is added to each pod
     spec:
       containers:
         - env:
@@ -20,9 +20,10 @@ spec:
               value: mongodb://db:27017/volunteer-tracker
             - name: PORT
               value: "4001"
-          image: backend
-          name: backend
+          image: volunteer-tracker-backend # Load the local docker image into minikube using eval $(minikube docker-env)
+          name: volunteer-tracker-backend
           ports:
             - containerPort: 4001
               protocol: TCP
+          imagePullPolicy: Never # Prevents pulling from hub, just using local image
       restartPolicy: Always
